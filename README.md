@@ -20,7 +20,7 @@ An intelligent Python model that monitors ambient light levels during video capt
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/Low-Light-Detection-Model.git
+git clone https://github.com/SakibAhmedShuva/Low-Light-Detection-Model.git
 cd Low-Light-Detection-Model
 ```
 
