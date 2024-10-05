@@ -15,18 +15,23 @@ An intelligent Python model that monitors ambient light levels during video capt
 - Python 3.6 or higher
 - OpenCV (cv2)
 - Compatible webcam or camera device
+- Flask==3.0.3
+- Flask_Cors==5.0.0
+- numpy==2.1.1
+- opencv_contrib_python==4.10.0.84
+- opencv_python==4.10.0.84
 
 ## Installation
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/SakibAhmedShuva/Low-Light-Detection-Model.git
-cd Low-Light-Detection-Model
+git clone https://github.com/SakibAhmedShuva/Real-time-Light-Detection-API.git
+cd Real-time-Light-Detection-API
 ```
 
 2. Install required dependencies:
 ```bash
-pip install opencv-python
+pip install -r requirements.txt
 ```
 
 ## Usage
@@ -39,7 +44,7 @@ python light_detection_model.py
 
 The model will:
 1. Initialize your camera device
-2. Begin continuous light level monitoring
+2. Begin continuous light-level monitoring
 3. Automatically start recording when lighting is adequate
 4. Terminate after 60 seconds or upon pressing 'q'
 
@@ -69,6 +74,11 @@ The model utilizes two primary functions:
 ## Output
 
 The model generates an 'output.avi' file containing only the footage captured under sufficient lighting conditions.
+
+## Screenshot
+
+![image](https://github.com/user-attachments/assets/250ead00-3fc4-4fa4-a186-d21990218584)
+
 
 ## Limitations
 
