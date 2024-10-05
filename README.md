@@ -1,32 +1,39 @@
-# Low-Light-Detection-Model
+# Light Intensity Detection API
 
-An intelligent Python model that monitors ambient light levels during video capture, ensuring optimal recording conditions and providing real-time feedback for low-light situations.
+A web-based application that monitors ambient light levels in real-time using your device's camera, providing immediate feedback on lighting conditions through a Flask backend API and browser-based frontend.
 
 ## Features
+- Real-time light level detection through web browser
+- Flask-based API for light analysis
+- Browser-based video capture and monitoring
+- Simple user interface with status feedback
+- Cross-Origin Resource Sharing (CORS) enabled
 
-- Real-time low light detection and monitoring
-- Automated video recording with light-level awareness
-- Console-based feedback system for lighting conditions
-- Configurable light sensitivity and recording parameters
-- Video output in AVI format with maintained quality
+## Components
+1. **Backend (Flask API)**
+   - Processes image data
+   - Analyzes light levels
+   - Returns binary light status (sufficient/insufficient)
+
+2. **Frontend (HTML/JavaScript)**
+   - Captures video from user's camera
+   - Sends frames to backend for analysis
+   - Displays real-time lighting status
 
 ## Requirements
-
 - Python 3.6 or higher
+- Flask
 - OpenCV (cv2)
+- NumPy
+- Flask-CORS
+- Web browser with camera access
 - Compatible webcam or camera device
-- Flask==3.0.3
-- Flask_Cors==5.0.0
-- numpy==2.1.1
-- opencv_contrib_python==4.10.0.84
-- opencv_python==4.10.0.84
 
 ## Installation
-
 1. Clone this repository:
 ```bash
-git clone https://github.com/SakibAhmedShuva/Real-time-Light-Detection-API.git
-cd Real-time-Light-Detection-API
+git clone https://github.com/SakibAhmedShuva/Light-Intensity-Detection-API.git
+cd Light-Intensity-Detection-API
 ```
 
 2. Install required dependencies:
@@ -35,56 +42,49 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-
-Execute the model using Python:
-
+1. Start the Flask backend:
 ```bash
-python light_detection_model.py
+python app.py
 ```
 
-The model will:
-1. Initialize your camera device
-2. Begin continuous light-level monitoring
-3. Automatically start recording when lighting is adequate
-4. Terminate after 60 seconds or upon pressing 'q'
+2. Open the frontend HTML file in a web browser
 
-### Customization
+3. Allow camera access when prompted
 
-Adjustable parameters within the model:
-- Light sensitivity threshold: `avg_brightness < 100`
-- Recording duration: `time.time() - start_time > 60`
-- Output video resolution: `(640, 480)`
-- Frame rate: `20.0` FPS
+4. Click "Start Recording" to begin light level monitoring
+
+### How it Works
+1. The frontend captures frames from your camera
+2. Frames are sent to the Flask backend
+3. Backend analyzes light levels using OpenCV
+4. Results are displayed in real-time on the webpage
 
 ## Technical Implementation
+The system uses two main components:
 
-The model utilizes two primary functions:
+1. **Backend (app.py)**
+   - `/check_light` endpoint processes POST requests
+   - Converts base64 image data to OpenCV format
+   - Analyzes HSV color space for brightness
+   - Returns JSON response with light status
 
-1. `check_light(frame)`:
-   - Converts captured frames to HSV color space
-   - Analyzes brightness levels
-   - Returns a boolean indicator for lighting adequacy
+2. **Frontend (HTML/JavaScript)**
+   - Manages camera access and video display
+   - Captures and sends frames to backend
+   - Updates UI based on API response
 
-2. `capture_video(cap, save_path)`:
-   - Manages continuous frame capture
-   - Implements real-time light monitoring
-   - Controls video recording based on lighting conditions
-   - Provides user feedback through console output
-
-## Output
-
-The model generates an 'output.avi' file containing only the footage captured under sufficient lighting conditions.
+## Customization
+Adjustable parameters:
+- Light sensitivity threshold in backend: `avg_brightness < 100`
+- Frame capture interval in frontend (currently 1 second)
 
 ## Screenshot
 
 ![image](https://github.com/user-attachments/assets/250ead00-3fc4-4fa4-a186-d21990218584)
 
 
-## Limitations
-
-- Camera compatibility dependent on OpenCV support
-- May require calibration for different camera sensors
-- Currently limited to AVI format for video output
+## Example Notebook
+This repository includes a Jupyter notebook demonstrating the core concepts and development process.
 
 ## Contributing
 
@@ -95,11 +95,4 @@ Contributions are welcome! Feel free to:
 - Open issues for bugs or feature enhancements
 
 ## License
-
 This project is distributed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- OpenCV community for comprehensive documentation
-- Python community for valuable resources and support
-
